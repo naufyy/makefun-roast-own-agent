@@ -20,6 +20,8 @@ ROAST = "I asked my agent to fix one typo. It touched 14 files, wrote a migratio
 
 
 def main() -> None:
+    # The bounty gate rejects any entry that isn't one non-blank line of
+    # 1-200 characters, so fail loudly here rather than ship a dead entry.
     if not (1 <= len(ROAST) <= 200) or "\n" in ROAST or not ROAST.strip():
         raise SystemExit("roast must be a single non-blank line of 1-200 characters")
     out = Path("/output")
